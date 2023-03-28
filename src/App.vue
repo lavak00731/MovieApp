@@ -1,6 +1,6 @@
 <script setup>
-  import NavBar from './components/NavBar.vue';
-  import MoviesHome from './components/MoviesHome.vue';
+  import  NavBar from './components/NavBar.vue';
+  import MoviesHome from './pages/MoviesHome.vue';
 </script>
 
 <template>
