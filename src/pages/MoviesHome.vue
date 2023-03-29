@@ -1,4 +1,7 @@
 <template>
+    <header>
+        <navbar />
+    </header>  
     <div class="movies-wrapper" v-if="movies">
         <h1>Welcome to Movie App</h1>
         <p class="text-end">
@@ -24,7 +27,12 @@
                         :alt="movie.title">
                     <div class="card-body">
                         <h2 class="card-title">{{ movie.title }}</h2>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <router-link :to="{
+                            name: 'Movie',
+                            params: {
+                                id: movie.id
+                            }
+                        }"  class="btn btn-primary">Go somewhere</router-link>
                     </div>
                 </div>
             </div>
@@ -50,11 +58,13 @@
     import {
         getMovies
     } from '../services/getMovies';
+    import NavBar from './../components/NavBar.vue';
     import Paginate from "vuejs-paginate-next";
     export default {
         name: "MoviesHome",
         components: {
             paginate: Paginate,
+            navbar: NavBar
         },
         data: () => {
             let movies = {};            
