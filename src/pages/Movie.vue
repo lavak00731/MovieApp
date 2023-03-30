@@ -41,7 +41,6 @@
             }
         },
         created() {
-
             getSpecificMovie(this.id).then((data) => {
                 this.movie = data;
             });

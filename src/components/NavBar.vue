@@ -15,7 +15,10 @@
                 </li>
             </ul>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" list="datalistOptions" @input="inputSearch">
+                <datalist id="datalistOptions">
+                    <option :value="result.title" v-for="result in searchResult.results"/>
+                </datalist>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
             </div>
@@ -24,11 +27,27 @@
 </template>
 
 <script>
-    export default {
-        
+    import { searchMovies } from "../services/searchMovies";
+    import { debounce } from "../helpers/debounce";
+    export default { 
+        data: () => {                   
+            return {
+                searchResult: {}
+            }
+        },       
+        methods: {
+            inputSearch: function(e) {
+                if(e.target.value.length <= 0 ) return;
+                e.preventDefault();
+                debounce(searchMovies(e.target.value).then((data) => {
+                    this.searchResult = data;
+                }))
+                
+            }
+        }
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

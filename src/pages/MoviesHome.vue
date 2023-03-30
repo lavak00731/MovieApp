@@ -67,9 +67,9 @@
             navbar: NavBar
         },
         data: () => {
-            let movies = {};            
+          
             return {
-                movies
+                movies: {}
             }
         },
         created() {
