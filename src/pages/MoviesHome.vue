@@ -32,7 +32,14 @@
                             params: {
                                 id: movie.id
                             }
-                        }"  class="btn btn-primary">Go somewhere</router-link>
+                        }"  class="btn btn-primary">Details</router-link>
+                    </div>
+                    <div class="card-footer">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" role="switch" :id="`fav${movie.id}`">
+                            <label class="form-check-label" :for="`fav${movie.id}`">Make this film your favorite</label>
+                        </div>
+
                     </div>
                 </div>
             </div>
