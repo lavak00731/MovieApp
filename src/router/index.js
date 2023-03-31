@@ -4,12 +4,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/',
+            path: '/login',
             name: 'Login',
             component: () => import('../pages/Login.vue')
         },
         {
-            path: '/home',
+            path: '/',
             name: 'Home',
             component: () => import('../pages/MoviesHome.vue')
         },        
@@ -28,6 +28,11 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
+    const isAuthenticated = localStorage.getItem('isLogged');
+    if (isAuthenticated !== 'true' && to.name !== 'Login') {
+        return { name: 'Login' }
+    } 
+
 
 })
 

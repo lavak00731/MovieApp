@@ -8,6 +8,7 @@
                     <div class="mb-3">
                         <label for="user" class="form-label">User</label>
                         <input type="text" class="form-control" id="user" placeholder="Your User" v-model="user">
+                        <p class="alert" v-if="user !== 'Ezequiel'">User Name must be Ezequiel</p>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
@@ -31,8 +33,11 @@
         },
         methods: {
             validateUser: function(){
+                const router = this.$router;
+                console.log(router)
                 if(this.user.length > 0 && this.user === "Ezequiel" && this.password.length > 0) {
-                    localStorage.setItem('isLogged', 'true')
+                    localStorage.setItem('isLogged', 'true');
+                    router.replace('/')
                 }
             }
         }
