@@ -36,7 +36,12 @@
                     </div>
                     <div class="card-footer">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch" :id="`fav${movie.id}`">
+                            <input class="form-check-input" 
+                            type="checkbox" 
+                            role="switch" 
+                            :id="`fav${movie.id}`" 
+                            @change="makeItFav(movie, $event)"
+                            :checked="isChecked(movie.id)">
                             <label class="form-check-label" :for="`fav${movie.id}`">Make this film your favorite</label>
                         </div>
 
@@ -73,14 +78,13 @@
             paginate: Paginate,
             navbar: NavBar
         },
-        data: () => {
-          
+        data: () => {          
             return {
-                movies: {}
+                movies: {},
+                favList: []
             }
         },
         created() {
-
             getMovies().then((data) => {
                 this.movies = data;
             });
@@ -91,6 +95,25 @@
                     this.movies = data;
                 });
             },
+            makeItFav: function(movie, event) {
+                if( !this.favList || this.favList.length === 0) {
+                    this.favList = JSON.stringify([movie]);
+                    localStorage.setItem('favList', this.favList);
+                } else {
+                    if(event.explicitOriginalTarget.checked) {
+                        this.favList = JSON.stringify([...this.favList, movie]);                      
+                    } else {
+                        this.favList = JSON.stringify(favList.filter( fav => fav.id !== movie.id));
+                    }
+                    localStorage.setItem('favList', this.favList);
+                }
+            },
+            isChecked: function (id) {
+                this.favList = JSON.parse(localStorage.getItem('favList'));
+                if(this.favList && this.favList.length > 0) {
+                    return this.favList.some(el => el.id === id);                  
+                }
+            }
         },
     }
 </script>
