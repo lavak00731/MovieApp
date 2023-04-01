@@ -81,7 +81,7 @@
         data: () => {          
             return {
                 movies: {},
-                favList: []
+                favList: JSON.parse(localStorage.getItem('favList'))
             }
         },
         created() {
@@ -103,7 +103,7 @@
                     if(event.explicitOriginalTarget.checked) {
                         this.favList = JSON.stringify([...this.favList, movie]);                      
                     } else {
-                        this.favList = JSON.stringify(favList.filter( fav => fav.id !== movie.id));
+                        this.favList = JSON.stringify(this.favList.filter( fav => fav.id !== movie.id));
                     }
                     localStorage.setItem('favList', this.favList);
                 }
