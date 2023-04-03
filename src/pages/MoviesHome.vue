@@ -100,7 +100,7 @@
                     this.favList = JSON.stringify([movie]);
                     localStorage.setItem('favList', this.favList);
                 } else {
-                    if(event.explicitOriginalTarget.checked) {
+                    if(event.explicitOriginalTarget?.checked) {
                         this.favList = JSON.stringify([...this.favList, movie]);                      
                     } else {
                         this.favList = JSON.stringify(this.favList.filter( fav => fav.id !== movie.id));

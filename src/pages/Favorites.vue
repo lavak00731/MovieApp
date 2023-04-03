@@ -4,7 +4,7 @@
     </header>
     <div class="fav-wrapper">
         <h1>Your Favorites movies</h1>
-        <template v-if="favList.length > 0">
+        <template v-if="favList?.length > 0">
             <div class="movie-container">
                 <div class="row g-3">
                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch" v-for="movie in favList">
