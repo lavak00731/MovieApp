@@ -27,7 +27,7 @@
 <script>
     import {
         getSpecificMovie
-    } from '../services/getSpecificMovie';
+    } from './../services/getSpecificMovie';
     import NavBar from './../components/NavBar.vue';
     export default {
         props: ['id'],

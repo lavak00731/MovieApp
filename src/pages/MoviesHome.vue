@@ -69,7 +69,7 @@
 <script>
     import {
         getMovies
-    } from '../services/getMovies';
+    } from './../services/getMovies';
     import NavBar from './../components/NavBar.vue';
     import Paginate from "vuejs-paginate-next";
     export default {
