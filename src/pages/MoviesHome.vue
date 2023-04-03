@@ -27,7 +27,7 @@
                         :alt="movie.title">
                     <div class="card-body">
                         <h2 class="card-title">{{ movie.title }}</h2>
-                        <router-link target="_blank" :to="{
+                        <router-link :to="{
                             name: 'Movie',
                             params: {
                                 id: movie.id
