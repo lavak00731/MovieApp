@@ -8,11 +8,12 @@
                     <div class="mb-3">
                         <label for="user" class="form-label">User</label>
                         <input type="text" class="form-control" id="user" placeholder="Your User" v-model="user">
-                        <p class="alert" v-if="user !== 'Ezequiel' && user !== ''">User Name must be Ezequiel</p>
+                        <p class="alert alert-danger" v-if="user !== 'Ezequiel' && user !== '' && sendingAttemp">User Name must be Ezequiel</p>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" v-model="password">
+                        <p class="alert alert-danger" v-if="password.length < 3 && password !== '' && sendingAttemp">Password min length is 3 characters</p>
                     </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Log in</button></div>
@@ -28,14 +29,16 @@
         data() {
             return {
                 user: '',
-                password: ''
+                password: '',
+                sendingAttemp: false
             }
         },
         methods: {
             validateUser: function(){
                 const router = this.$router;
                 this.user = this.user.trim();
-                if(this.user.length > 0 && this.user === "Ezequiel" && this.password.length > 0) {
+                this.sendingAttemp = true;
+                if(this.user.length > 0 && this.user === "Ezequiel" && this.password.length >= 3) {
                     localStorage.setItem('isLogged', 'true');
                     router.replace('/')
                 }
