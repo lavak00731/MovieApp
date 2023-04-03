@@ -11,23 +11,23 @@ const router = createRouter({
         {
             path: '/',
             name: 'Home',
-            component: () => import('../pages/MoviesHome.vue')
+            component: () => import('./../pages/MoviesHome.vue')
         },
         {
             path: '/favorites',
             name: 'Favorites',
-            component: () => import('../pages/Favorites.vue')
+            component: () => import('./../pages/Favorites.vue')
         },         
         {
             path: '/movie/:id',
             name: 'Movie',
-            component: () => import('../pages/Movie.vue'),
+            component: () => import('./../pages/Movie.vue'),
             props: true
         },
         {
             path: "/:catchAll(.*)",
             name: "Not Found",
-            component: () => import('../pages/404.vue'),
+            component: () => import('./../pages/404.vue'),
           },
     ]
 });
