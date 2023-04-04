@@ -14,7 +14,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ movie.title }}</h5>
                                 <p class="card-text">{{ movie.overview }}</p>
-                                <p class="card-text"><small class="text-body-secondary"><router-link target="_blank" :to="{
+                                <p class="card-text"><small class="text-body-secondary"><router-link :to="{
                             name: 'Movie',
                             params: {
                                 id: movie.id
