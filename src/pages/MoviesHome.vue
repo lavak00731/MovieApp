@@ -81,7 +81,7 @@
         data: () => {          
             return {
                 movies: {},
-                favList: JSON.parse(localStorage.getItem('favList'))
+                
             }
         },
         created() {
@@ -95,23 +95,23 @@
                     this.movies = data;
                 });
             },
+            checkFavList: function () {
+                return (localStorage.getItem('favList')) ? JSON.parse(localStorage.getItem('favList')) : [];
+            },
             makeItFav: function(movie, event) {
-                if( !this.favList || this.favList.length === 0) {
-                    this.favList = JSON.stringify([movie]);
-                    localStorage.setItem('favList', this.favList);
+                let favList = this.checkFavList();
+                if (event.target.checked) {
+
+                    favList.push(movie)
                 } else {
-                    if(event.explicitOriginalTarget?.checked) {
-                        this.favList = JSON.stringify([...this.favList, movie]);                      
-                    } else {
-                        this.favList = JSON.stringify(this.favList.filter( fav => fav.id !== movie.id));
-                    }
-                    localStorage.setItem('favList', this.favList);
+                    favList = favList.filter( fav => fav.id !== movie.id)
                 }
+                localStorage.setItem('favList', JSON.stringify(favList));                
             },
             isChecked: function (id) {
-                this.favList = JSON.parse(localStorage.getItem('favList'));
-                if(this.favList && this.favList.length > 0) {
-                    return this.favList.some(el => el.id === id);                  
+                let favList = this.checkFavList();
+                if(favList.length > 0) {  
+                    return favList.some(el => el.id === id);                  
                 }
             }
         },
