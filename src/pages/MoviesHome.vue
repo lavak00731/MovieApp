@@ -10,6 +10,7 @@
             <span>{{ movies.total_results }}</span>
         </p>
         <paginate
+            v-model="page"
             :page-count="500"
             :page-range="3"
             :margin-pages="2"
@@ -50,6 +51,7 @@
             </div>
         </div>
         <paginate class="my-2"
+            v-model="page"
             :page-count="500"
             :page-range="3"
             :margin-pages="2"
@@ -81,6 +83,7 @@
         data: () => {          
             return {
                 movies: {},
+
                 
             }
         },
@@ -94,6 +97,7 @@
                 getMovies(pageNum).then((data) => {
                     this.movies = data;
                 });
+                let page = pageNum;
             },
             checkFavList: function () {
                 return (localStorage.getItem('favList')) ? JSON.parse(localStorage.getItem('favList')) : [];
